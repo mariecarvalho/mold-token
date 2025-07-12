@@ -1,17 +1,16 @@
-const { ethers } = require("hardhat");
+const hre = require("hardhat");
 
 async function main() {
-    const [deployer] = await ethers.getSigners();
-    console.log("Deploying contracts with account:", deployer.address);
+  const [deployer] = await hre.ethers.getSigners();
+  console.log("Deploying contracts with account:", deployer.address);
 
-    const initialSupply = ethers.utils.parseEther("1000000"); // 1 million MOLD tokens
-    const Token = await ethers.getContractFactory("MoldToken");
-    const token = await Token.deploy(initialSupply);
+  const MoldToken = await hre.ethers.getContractFactory("contracts/MoldToken.sol:MoldToken");
+  const mold = await MoldToken.deploy();
 
-    console.log("MoldToken deployed to:", token.address);
+  console.log(`MoldToken deployed to: ${mold.target}`); // em ethers v6, use .target para endereço do contrato
 }
 
 main().catch((error) => {
-    console.error(error);
-    process.exitCode = 1;
+  console.error(error);
+  process.exitCode = 1;
 });

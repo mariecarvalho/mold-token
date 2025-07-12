@@ -18,7 +18,7 @@ contract MoldToken is ERC20Burnable, Pausable, Ownable {
         _unpause();
     }
 
-    function _update(address from, address to, uint256 value) internal override whenNotPaused {
-        super._update(from, to, value);
+   function _beforeTokenTransfer(address from, address to, uint256 amount) internal override whenNotPaused {
+        super._beforeTokenTransfer(from, to, amount);
     }
 }
