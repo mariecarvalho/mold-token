@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ethers } from 'ethers';
-import MoldTokenABI from './MoldToken.json'; // import JSON ABI manually
+import MoldTokenABI from '../MoldToken.json'; // import JSON ABI manually
 
-const CONTRACT_ADDRESS = "<PUT_DEPLOYED_ADDRESS_HERE>";
+const CONTRACT_ADDRESS = "INSERT HERE";
 
 function App() {
   const [account, setAccount] = useState(null);
@@ -16,7 +16,7 @@ function App() {
 
       const contract = new ethers.Contract(CONTRACT_ADDRESS, MoldTokenABI, signer);
       const bal = await contract.balanceOf(await signer.getAddress());
-      setBalance(ethers.formatUnits(bal, 18));
+      setBalance(ethers.formatUnits(bal, 18)); 
     }
   }
 
